@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+// Centralized Base URL (Port change karne ke liye bas yahan badlein)
+const BASE_URL = "http://localhost:5000";
+
 export default function App() {
   const [projects, setProjects] = useState([]);
   const [showAdmin, setShowAdmin] = useState(false);
@@ -12,7 +15,7 @@ export default function App() {
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch(`${BASE_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -48,7 +51,7 @@ export default function App() {
   const [projectLink, setProjectLink] = useState('');
 
   const [activeTab, setActiveTab] = useState('home');
-  const API_URL = "http://localhost:5000/api/projects";
+  const API_URL = `${BASE_URL}/api/projects`;
 
   const fetchProjects = async () => {
     try {
