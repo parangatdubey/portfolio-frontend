@@ -1,154 +1,295 @@
-/* ========================================== */
-/* GLOBAL RESET & BASE STYLES                 */
-/* ========================================== */
+/* GLOBAL RESETS */
 * {
   box-sizing: border-box;
-}
-
-html, body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  overflow-x: hidden; /* Mobile pe screen horizontal nhi hilegi */
-  background-color: #0d0d0d;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html {
   scroll-behavior: smooth;
 }
 
-#root {
-  width: 100% !important;
-  max-width: 100% !important;
+body {
+  background-color: #0d0d0f;
+  color: #f8fafc;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
 }
 
+.portfolio-app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* NAVBAR - MOBILE FIRST */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(13, 13, 15, 0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #c084fc;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a.active, .nav-links a:hover {
+  color: #c084fc;
+}
+
+/* LAYOUT CONTAINER */
+.main-content {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* HERO SECTION */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+  padding: 40px 0;
+  min-height: 80vh;
+  justify-content: center;
+}
+
+.hero-text h2 {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.hero-text h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero-text h1 span {
+  color: #ffffff;
+}
+
+.hero-text h1 .highlight {
+  color: #c084fc;
+}
+
+.hero-text p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 24px auto;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #c084fc;
+  color: #0d0d0f;
+}
+
+.btn-primary:hover {
+  background-color: #a855f7;
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* PURPLE PD BADGE */
+.hero-badge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.pd-badge {
+  width: 180px;
+  height: 180px;
+  background-color: #c084fc;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(192, 132, 252, 0.3);
+}
+
+.pd-badge span {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #0d0d0f;
+}
+
+/* SECTIONS */
+.section {
+  padding: 60px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #e2e8f0;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.skill-card {
+  background: #18181b;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.project-card {
+  background: #18181b;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.tech-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: rgba(192, 132, 252, 0.1);
+  color: #c084fc;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
 /* ========================================== */
-/* MOBILE FIRST STYLES (Phone View Default)   */
-/* ========================================== */
-
-/* 1. NAVBAR MOBILE FIX */
-nav, .navbar {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
-  display: flex !important;
-  flex-direction: column !important; /* Mobile par logo upar, menu niche */
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 12px !important;
-  padding: 12px 16px !important;
-  width: 100% !important;
-  background: rgba(13, 13, 15, 0.95) !important;
-  backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-nav ul, .nav-links {
-  display: flex !important;
-  flex-wrap: wrap !important; /* Links screen ke bahar nahi katenge */
-  justify-content: center !important;
-  gap: 12px 18px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  list-style: none !important;
-}
-
-nav a, .nav-links a {
-  font-size: 0.9rem !important;
-  color: #cbd5e1 !important;
-  text-decoration: none !important;
-  font-weight: 500 !important;
-}
-
-/* 2. HERO SECTION MOBILE FIX */
-#home, .hero {
-  display: flex !important;
-  flex-direction: column !important; /* Text aur Purple Badge ek ke niche ek */
-  align-items: center !important;
-  text-align: center !important;
-  padding: 30px 20px !important;
-  gap: 28px !important;
-  width: 100% !important;
-  min-height: auto !important;
-}
-
-/* Hero Headings */
-#home h1, .hero h1 {
-  font-size: 2.2rem !important;
-  line-height: 1.25 !important;
-  margin-bottom: 12px !important;
-}
-
-#home p, .hero p {
-  font-size: 0.95rem !important;
-  line-height: 1.6 !important;
-  color: #a0aec0 !important;
-  max-width: 100% !important;
-}
-
-/* Purple PD Badge Center Alignment */
-#home > div:last-child, .hero > div:last-child {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-
-#home div[style*="width"], .hero div[style*="width"] {
-  max-width: 220px !important; /* Phone screen ke hisab se perfectly sized badge */
-  height: auto !important;
-}
-
-/* Buttons Center Fix */
-#home div:has(button) {
-  display: flex !important;
-  justify-content: center !important;
-  gap: 12px !important;
-  width: 100% !important;
-}
-
-/* ========================================== */
-/* DESKTOP STYLES (Laptops / Large Displays)  */
+/* DESKTOP BREAKPOINTS (Laptops & Displays)   */
 /* ========================================== */
 @media (min-width: 768px) {
-  /* Desktop Navbar */
-  nav, .navbar {
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    padding: 18px 60px !important;
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 60px;
   }
 
-  nav ul, .nav-links {
-    gap: 30px !important;
+  .nav-links {
+    gap: 28px;
   }
 
-  nav a, .nav-links a {
-    font-size: 1rem !important;
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    text-align: left;
+    align-items: center;
+    padding: 60px 0;
   }
 
-  /* Desktop Hero Grid Layout */
-  #home, .hero {
-    display: grid !important;
-    grid-template-columns: 1.2fr 0.8fr !important;
-    text-align: left !important;
-    align-items: center !important;
-    padding: 60px 60px !important;
-    min-height: 85vh !important;
+  .hero-text h1 {
+    font-size: 3.2rem;
   }
 
-  #home h1, .hero h1 {
-    font-size: 3.5rem !important;
+  .hero-text p {
+    margin: 0 0 24px 0;
   }
 
-  #home div:has(button) {
-    justify-content: flex-start !important;
+  .hero-buttons {
+    justify-content: flex-start;
   }
 
-  #home > div:last-child, .hero > div:last-child {
-    justify-content: flex-end !important;
+  .pd-badge {
+    width: 260px;
+    height: 260px;
   }
 
-  #home div[style*="width"], .hero div[style*="width"] {
-    max-width: 320px !important;
+  .pd-badge span {
+    font-size: 5rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
