@@ -232,12 +232,8 @@ export default function App() {
           <div className="about-grid">
             <div className="avatar-box">
               <div className="avatar-inner">
-                {profileImg ? (
-                  <img src={profileImg} alt="About Avatar" className="badge-img" />
-                ) : (
-                  <span className="avatar-icon">👨‍💻</span>
-                )}
-              </div>
+  <img src="/profile.jpg" alt="Parangat Dubey" className="badge-img" />
+</div>
             </div>
             <div className="about-details">
               <p>
