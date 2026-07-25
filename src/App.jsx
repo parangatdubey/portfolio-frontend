@@ -147,12 +147,26 @@ export default function App() {
               </li>
             ))}
           </ul>
-          <button onClick={() => setShowAdmin(!showAdmin)} className="admin-btn">
-            {showAdmin ? 'Hide Hub ×' : 'Admin Hub ⚙️'}
-          </button>
-        </div>
-      </nav>
-
+          {/* SECURED ADMIN BUTTON */}
+        <button 
+          onClick={() => {
+            if (showAdmin) {
+              setShowAdmin(false);
+            } else {
+              const pass = prompt("Enter Admin Passcode to access Hub:");
+              if (pass === "@immature0089") {
+                setShowAdmin(true);
+              } else if (pass !== null) {
+                alert("Access Denied: Incorrect Passcode ❌");
+              }
+            }
+          }} 
+          className="admin-btn"
+        >
+          {showAdmin ? 'Hide Hub ×' : 'Admin Hub ⚙️'}
+        </button>
+      </div>
+    </nav>
       {/* DYNAMIC HUB ACCORDION */}
       {showAdmin && (
         <div className="admin-wrapper">
