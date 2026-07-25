@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 // Centralized Base URL
-// With this dynamic URL logic:
 const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 export default function App() {
@@ -15,30 +14,30 @@ export default function App() {
   const [contactSubject, setContactSubject] = useState('');
   const [contactMessage, setContactMessage] = useState('');
 
-  const handleContactSubmit = async (e) => {
+  // DIRECT WHATSAPP REDIRECT HANDLER
+  const handleContactSubmit = (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch(`${BASE_URL}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: contactName,
-          email: contactEmail,
-          subject: contactSubject,
-          message: contactMessage
-        })
-      });
-      const data = await res.json();
-      if (data.success) {
-        alert("Message delivered successfully to Parangat's Database! 🚀");
-        setContactName(''); setContactEmail(''); setContactSubject(''); setContactMessage('');
-      } else {
-        alert("Sync error: " + data.error);
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Backend server connection missing.");
-    }
+
+    const phoneNumber = "917088427211"; // Country code ke sath phone number
+
+    // Beautifully formatted WhatsApp message text
+    const textMessage = `*New Portfolio Message!* 🚀%0A%0A` +
+      `*Name:* ${encodeURIComponent(contactName)}%0A` +
+      `*Email:* ${encodeURIComponent(contactEmail)}%0A` +
+      `*Subject:* ${encodeURIComponent(contactSubject || 'N/A')}%0A` +
+      `*Message:* ${encodeURIComponent(contactMessage)}`;
+
+    // WhatsApp Web/App Trigger Link
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${textMessage}`;
+
+    // Direct WhatsApp tab open karo
+    window.open(whatsappUrl, '_blank');
+
+    // Reset Form Fields
+    setContactName('');
+    setContactEmail('');
+    setContactSubject('');
+    setContactMessage('');
   };
   
   // Dynamic Profile Image State via LocalStorage
@@ -149,26 +148,27 @@ export default function App() {
             ))}
           </ul>
           {/* SECURED ADMIN BUTTON */}
-<button 
-  onClick={() => {
-    if (showAdmin) {
-      setShowAdmin(false);
-    } else {
-      const pass = prompt("Enter Admin Passcode to access Hub:");
-      const secretPass = import.meta.env.VITE_ADMIN_PASS;
-      if (pass === secretPass) {
-        setShowAdmin(true);
-      } else if (pass !== null) {
-        alert("Access Denied: Incorrect Passcode ❌");
-      }
-    }
-  }} 
-  className="admin-btn"
->
-  {showAdmin ? 'Hide Hub ×' : 'Admin Hub ⚙️'}
-</button>
-      </div>
-    </nav>
+          <button 
+            onClick={() => {
+              if (showAdmin) {
+                setShowAdmin(false);
+              } else {
+                const pass = prompt("Enter Admin Passcode to access Hub:");
+                const secretPass = import.meta.env.VITE_ADMIN_PASS;
+                if (pass === secretPass) {
+                  setShowAdmin(true);
+                } else if (pass !== null) {
+                  alert("Access Denied: Incorrect Passcode ❌");
+                }
+              }
+            }} 
+            className="admin-btn"
+          >
+            {showAdmin ? 'Hide Hub ×' : 'Admin Hub ⚙️'}
+          </button>
+        </div>
+      </nav>
+
       {/* DYNAMIC HUB ACCORDION */}
       {showAdmin && (
         <div className="admin-wrapper">
@@ -234,8 +234,8 @@ export default function App() {
           <div className="about-grid">
             <div className="avatar-box">
               <div className="avatar-inner">
-  <img src="/profile.jpg" alt="Parangat Dubey" className="badge-img" />
-</div>
+                <img src="/profile.jpg" alt="Parangat Dubey" className="badge-img" />
+              </div>
             </div>
             <div className="about-details">
               <p>
