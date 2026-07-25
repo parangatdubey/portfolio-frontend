@@ -2,7 +2,8 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 // Centralized Base URL
-const BASE_URL = "http://localhost:5000";
+// With this dynamic URL logic:
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 export default function App() {
   const [projects, setProjects] = useState([]);
